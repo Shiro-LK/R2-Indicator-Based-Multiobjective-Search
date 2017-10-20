@@ -1,5 +1,5 @@
 R2 Indicator Based Multiobjective Search
 Dimo Brockhoff, Tobias Wagner, Heike Trautmann
 
-Python3
-https://github.com/numbbo/coco/
+Language: Python3
+Dependance: COCO platform - https://github.com/numbbo/coco/

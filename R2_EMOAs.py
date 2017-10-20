@@ -364,10 +364,8 @@ class R2_EMOAs():
 
         # Normalization of fun() results for value between [0,1]
         print("Initial population:")
-        print(self.population_list)
 
         print(" Optimization in progress")
-
         while True:
             # Creating, normalization and adding offspring in population
             offspring = R2.crossover_mutation(self.population_list[:, :self.population_list.shape[1] - IGNORE_OBJECTIVE_VALUE_INDEX],
@@ -395,7 +393,6 @@ class R2_EMOAs():
                 break
 
         print("final population")
-        print(self.population_list)
         print("time: ", time.time() - begin)
         print("Optimization ending")
 
@@ -411,17 +408,15 @@ if __name__ == '__main__':
     import cocoex as ex
 
     suite = ex.Suite("bbob-biobj", "", "")
-    observer = ex.Observer("bbob-biobj", "result_folder:doctest_OK3")
+    observer = ex.Observer("bbob-biobj", "result_folder:doctest")
 
     for fun in suite:
         print("Number of objectives: ", fun.number_of_objectives)
-        if fun.dimension < 40:
-            continue
-        print(fun.dimension)
         fun.observe_with(observer)
         R2 = R2_EMOAs(fun)
         # Configuration by default from R2 Indicator-Based Multiobjective Search research paper (Dimo Brockhoff)
         # Only the iteration number is changed due to the computation time
         # Tested for 100 - 150 - 500 - 1000 - 5000 - 10000
         # Official results for 150 and 1000 only (tecnology restriction)
-        R2.optimize(fun, np.array([-1e-1, -1e-1]),1000 , 10, 15, 0.9, 0.5, (1 / fun.dimension), 20, 100, -100)
+        R2.optimize(fun, np.array([-1e-1, -1e-1]),200000 , 10, 15, 0.9, 0.5, (1 / fun.dimension), 20, 100, -100)
+
